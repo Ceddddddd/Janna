@@ -1,0 +1,71 @@
+create database janna
+
+CREATE TABLE Boarders (
+    BoarderID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    Gender VARCHAR(10),
+    ContactNumber VARCHAR(20),
+    Email VARCHAR(100),
+    MoveInDate DATE
+);
+
+CREATE TABLE WaterBills (
+    BillID INT PRIMARY KEY,
+    BoarderID INT,
+    BillDate DATE,
+    Amount DECIMAL(10,2),
+    FOREIGN KEY (BoarderID) REFERENCES Boarders(BoarderID)
+);
+CREATE TABLE ElectricBills (
+    BillID INT PRIMARY KEY,
+    BoarderID INT,
+    BillDate DATE,
+    Amount DECIMAL(10,2),
+    FOREIGN KEY (BoarderID) REFERENCES Boarders(BoarderID)
+);
+
+
+CREATE TABLE MonthlyLivingBills (
+    BillID INT PRIMARY KEY,
+    BoarderID INT,
+    BillDate DATE,
+    Rent DECIMAL(10,2),
+    OtherExpenses DECIMAL(10,2),
+    FOREIGN KEY (BoarderID) REFERENCES Boarders(BoarderID)
+);
+select * from  MonthlyLivingBills
+select * from Boarders
+select * from  WaterBills
+select * from  ElectricBills
+
+INSERT INTO ElectricBills (BillID, BoarderID, BillDate, Amount) VALUES
+(1, 101, '2023-01-15', 50.00),
+(2, 102, '2023-01-20', 45.75),
+(3, 103, '2023-01-25', 55.20),
+(4, 104, '2023-01-28', 60.50),
+(5, 105, '2023-01-30', 48.90);
+
+
+INSERT INTO MonthlyLivingBills (BillID, BoarderID, BillDate, Rent, OtherExpenses) VALUES
+(1, 101, '2023-01-01', 500.00, 100.00),
+(2, 102, '2023-01-01', 550.00, 120.00),
+(3, 103, '2023-01-01', 480.00, 90.00),
+(4, 104, '2023-01-01', 520.00, 110.00),
+(5, 105, '2023-01-01', 530.00, 105.00);
+
+
+INSERT INTO WaterBills (BillID, BoarderID, BillDate, Amount) VALUES
+(1, 101, '2023-01-15', 35.50),
+(2, 102, '2023-01-20', 40.25),
+(3, 103, '2023-01-25', 45.20),
+(4, 104, '2023-01-28', 50.75),
+(5, 105, '2023-01-30', 38.90);
+
+
+INSERT INTO Boarders (BoarderID, Name, Age, Gender, ContactNumber, Email, MoveInDate) VALUES
+(101, 'John Doe', 25, 'Male', '123-456-7890', 'john@example.com', '2023-01-01'),
+(102, 'Jane Smith', 30, 'Female', '987-654-3210', 'jane@example.com', '2023-01-05'),
+(103, 'Alice Johnson', 28, 'Female', '555-555-5555', 'alice@example.com', '2023-01-10'),
+(104, 'Bob Brown', 22, 'Male', '111-222-3333', 'bob@example.com', '2023-01-15'),
+(105, 'Eva White', 29, 'Female', '444-444-4444', 'eva@example.com', '2023-01-20');
